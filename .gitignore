@@ -109,4 +109,4 @@ tmp
 
 # Folders to ignore #
 #####################
-dist
+# dist
