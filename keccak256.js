@@ -7,32 +7,31 @@ var __importDefault = undefined && undefined.__importDefault || function (mod) {
     return mod && mod.__esModule ? mod : { "default": mod };
 };
 var bn_js_1 = __importDefault(require("bn.js"));
-var buffer_1 = __importDefault(require("buffer"));
 var keccak_1 = __importDefault(require("keccak"));
-var Buffer = buffer_1.default.Buffer;
+var buffer_1 = require("buffer");
 function keccak256(value) {
     value = toBuffer(value);
     return (0, keccak_1.default)('keccak256').update(value).digest();
 }
 function toBuffer(value) {
-    if (!Buffer.isBuffer(value)) {
+    if (!buffer_1.Buffer.isBuffer(value)) {
         if (Array.isArray(value)) {
-            value = Buffer.from(value);
+            value = buffer_1.Buffer.from(value);
         } else if (typeof value === 'string') {
             if (isHexString(value)) {
-                value = Buffer.from(padToEven(stripHexPrefix(value)), 'hex');
+                value = buffer_1.Buffer.from(padToEven(stripHexPrefix(value)), 'hex');
             } else {
-                value = Buffer.from(value);
+                value = buffer_1.Buffer.from(value);
             }
         } else if (typeof value === 'number') {
             value = intToBuffer(value);
         } else if (value === null || value === undefined) {
-            value = Buffer.allocUnsafe(0);
+            value = buffer_1.Buffer.allocUnsafe(0);
         } else if (bn_js_1.default.isBN(value)) {
-            value = value.toArrayLike(Buffer);
+            value = value.toArrayLike(buffer_1.Buffer);
         } else if (value.toArray) {
             // converts a BN to a Buffer
-            value = Buffer.from(value.toArray());
+            value = buffer_1.Buffer.from(value.toArray());
         } else {
             throw new Error('invalid type');
         }
@@ -71,7 +70,7 @@ function isHexPrefixed(value) {
 }
 function intToBuffer(i) {
     var hex = intToHex(i);
-    return Buffer.from(padToEven(hex.slice(2)), 'hex');
+    return buffer_1.Buffer.from(padToEven(hex.slice(2)), 'hex');
 }
 function intToHex(i) {
     var hex = i.toString(16);

@@ -25,11 +25,19 @@
     "prefer-const": 1,
     "no-async-promise-executor": 0,
     "node/no-callback-literal": 0,
-    "sort-imports-es6-autofix/sort-imports-es6": [1, {
-      "ignoreCase": false,
-      "ignoreMemberSort": false,
-      "memberSyntaxSortOrder": ["none", "single", "multiple", "all"]
-    }],
+    "sort-imports-es6-autofix/sort-imports-es6": [
+      1,
+      {
+        "ignoreCase": false,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": [
+          "none",
+          "single",
+          "multiple",
+          "all"
+        ]
+      }
+    ],
     "@typescript-eslint/strict-boolean-expressions": 0,
     "@typescript-eslint/restrict-template-expressions": 0,
     "@typescript-eslint/explicit-function-return-type": 0,
@@ -38,6 +46,7 @@
     "@typescript-eslint/no-dynamic-delete": 0,
     "@typescript-eslint/return-await": 0,
     "@typescript-eslint/consistent-type-definitions": 0,
-    "@typescript-eslint/method-signature-style": 0
+    "@typescript-eslint/method-signature-style": 0,
+    "@typescript-eslint/space-before-function-paren": 0
   }
 }

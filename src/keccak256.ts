@@ -1,15 +1,13 @@
 import BN from 'bn.js'
-import buffer from 'buffer'
 import createKeccakHash from 'keccak'
+import { Buffer } from 'buffer'
 
-const Buffer = buffer.Buffer
-
-function keccak256 (value: Buffer | BN | string | number) {
+function keccak256(value: Buffer | BN | string | number) {
   value = toBuffer(value)
   return createKeccakHash('keccak256').update(value as Buffer).digest()
 }
 
-function toBuffer (value: any) {
+function toBuffer(value: any) {
   if (!Buffer.isBuffer(value)) {
     if (Array.isArray(value)) {
       value = Buffer.from(value)
@@ -36,7 +34,7 @@ function toBuffer (value: any) {
   return value
 }
 
-function isHexString (value: any, length?: number) {
+function isHexString(value: any, length?: number) {
   if (typeof value !== 'string' || !value.match(/^0x[0-9A-Fa-f]*$/)) {
     return false
   }
@@ -48,7 +46,7 @@ function isHexString (value: any, length?: number) {
   return true
 }
 
-function padToEven (value: any) {
+function padToEven(value: any) {
   if (typeof value !== 'string') {
     throw new Error(`while padding to even, value must be string, is currently ${typeof value}, while padToEven.`)
   }
@@ -60,7 +58,7 @@ function padToEven (value: any) {
   return value
 }
 
-function stripHexPrefix (value: any) {
+function stripHexPrefix(value: any) {
   if (typeof value !== 'string') {
     return value
   }
@@ -68,7 +66,7 @@ function stripHexPrefix (value: any) {
   return isHexPrefixed(value) ? value.slice(2) : value
 }
 
-function isHexPrefixed (value: any) {
+function isHexPrefixed(value: any) {
   if (typeof value !== 'string') {
     throw new Error("value must be type 'string', is currently type " + (typeof value) + ', while checking isHexPrefixed.')
   }
@@ -76,12 +74,12 @@ function isHexPrefixed (value: any) {
   return value.slice(0, 2) === '0x'
 }
 
-function intToBuffer (i: number) {
+function intToBuffer(i: number) {
   const hex = intToHex(i)
   return Buffer.from(padToEven(hex.slice(2)), 'hex')
 }
 
-function intToHex (i: number) {
+function intToHex(i: number) {
   const hex = i.toString(16)
   return `0x${hex}`
 }
